@@ -24,6 +24,7 @@ public class Room {
         this.name = req.getString("name");
         this.description = req.getString("description");
         this.ownerId = req.getInt("owner_id");
+        System.out.println("Room '" + req.getString("name") + "' loaded!");
     }
 
     public HashMap<Integer, User> getUsers() {
