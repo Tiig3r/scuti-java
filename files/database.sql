@@ -98,6 +98,26 @@ CREATE TABLE `rooms` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `room_id` int(11) NOT NULL DEFAULT 0,
+  `item_id` int(11) DEFAULT 0,
+  `wall_pos` varchar(20) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `x` int(11) NOT NULL DEFAULT 0,
+  `y` int(11) NOT NULL DEFAULT 0,
+  `z` double(10,6) NOT NULL DEFAULT 0.000000,
+  `rot` int(11) NOT NULL DEFAULT 0,
+  `extra_data` varchar(1024) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `wired_data` varchar(256) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `limited_data` varchar(10) CHARACTER SET latin1 NOT NULL DEFAULT '0:0',
+  `guild_id` int(32) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
 -- Structure de la table `users`
 --
 
@@ -171,3 +191,12 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_id` (`user_id`,`room_id`) USING BTREE,
+  ADD KEY `itemsdata` (`room_id`,`item_id`) USING BTREE,
+  ADD KEY `user_id` (`user_id`) USING BTREE,
+  ADD KEY `extra_data` (`extra_data`) USING BTREE,
+  ADD KEY `wired_data` (`wired_data`) USING BTREE,
+  ADD KEY `id` (`id`) USING BTREE;
