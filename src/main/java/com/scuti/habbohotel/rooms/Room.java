@@ -22,6 +22,7 @@ public class Room {
     private final int thicknessFloor;
     private final String heightmap;
     private HashMap<Integer, User> users;
+    //private final TIntObjectMap<Item> roomItems;
 
     public Room(ResultSet req) throws SQLException {
         this.id = req.getInt("id");
@@ -68,4 +69,8 @@ public class Room {
     public String getHeightmap() {
         return this.heightmap;
     }
+
+    //public THashSet<Item> getFloorItems() {
+    //    THashSet<Item> items = new THashSet<>();
+    //}
 }

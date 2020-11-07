@@ -35,4 +35,6 @@ public class RoomManager {
     public HashMap<Integer, Room> getRoomsLoaded() {
         return this.rooms;
     }
+
+    public Room getRoom(Integer id) { return this.rooms.get(id); }
 }
