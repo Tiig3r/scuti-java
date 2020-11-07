@@ -1,5 +1,7 @@
 package com.scuti.habbohotel.rooms;
 
+import com.scuti.Emulator;
+import com.scuti.habbohotel.items.Item;
 import com.scuti.habbohotel.users.User;
 
 import java.sql.ResultSet;
@@ -22,6 +24,7 @@ public class Room {
     private final int thicknessFloor;
     private final String heightmap;
     private HashMap<Integer, User> users;
+    private HashMap<Integer, Item> items;
     //private final TIntObjectMap<Item> roomItems;
 
     public Room(ResultSet req) throws SQLException {
@@ -68,6 +71,22 @@ public class Room {
 
     public String getHeightmap() {
         return this.heightmap;
+    }
+
+    public void initItems() {
+        for(Item item: Emulator.scuti().getItemManager().getItems().values()) {
+            if(item.getRoom() == this.id) {
+                this.items.put(item.getId(), item);
+            }
+        }
+    }
+
+    public HashMap<Integer, Item> getItems() {
+        return this.items;
+    }
+
+    public void addItem(Item item) {
+        this.items.put(item.getId(), item);
     }
 
     //public THashSet<Item> getFloorItems() {
