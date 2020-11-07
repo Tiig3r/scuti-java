@@ -1,6 +1,6 @@
 package com.scuti.gameclients;
 
-import com.scuti.users.User;
+import com.scuti.habbohotel.users.User;
 
 public class GameClient {
     // Todo: work on channel (netty)

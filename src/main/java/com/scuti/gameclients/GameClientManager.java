@@ -1,6 +1,6 @@
 package com.scuti.gameclients;
 
-import com.scuti.users.User;
+import com.scuti.habbohotel.users.User;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.util.HashMap;

@@ -1,12 +1,9 @@
 
 package com.scuti;
 
-import com.scuti.catalog.CatalogManager;
 import com.scuti.core.ConfigurationManager;
 import com.scuti.database.Database;
-import com.scuti.rooms.RoomManager;
 import com.scuti.networking.*;
-import com.zaxxer.hikari.HikariDataSource;
 import org.fusesource.jansi.AnsiConsole;
 
 import java.sql.SQLException;

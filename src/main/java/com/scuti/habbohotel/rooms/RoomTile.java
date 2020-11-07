@@ -1,4 +1,4 @@
-package com.scuti.rooms;
+package com.scuti.habbohotel.rooms;
 
 public class RoomTile {
     private final double x;

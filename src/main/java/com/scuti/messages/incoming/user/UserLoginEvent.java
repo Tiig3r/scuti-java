@@ -5,7 +5,6 @@ import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
 import com.scuti.messages.outgoing.Outgoing;
 import com.scuti.messages.outgoing.OutgoingMessage;
-import com.scuti.users.User;
 import org.json.JSONObject;
 
 import java.io.IOException;

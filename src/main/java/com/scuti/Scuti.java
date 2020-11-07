@@ -1,12 +1,12 @@
 package com.scuti;
 
-import com.scuti.catalog.CatalogManager;
+import com.scuti.habbohotel.catalog.CatalogManager;
 import com.scuti.gameclients.GameClientManager;
-import com.scuti.items.ItemManager;
+import com.scuti.habbohotel.items.ItemManager;
 import com.scuti.messages.incoming.IncomingEventManager;
 import com.scuti.messages.outgoing.OutgoingMessageManager;
-import com.scuti.rooms.RoomManager;
-import com.scuti.users.UserManager;
+import com.scuti.habbohotel.rooms.RoomManager;
+import com.scuti.habbohotel.users.UserManager;
 
 import java.sql.SQLException;
 

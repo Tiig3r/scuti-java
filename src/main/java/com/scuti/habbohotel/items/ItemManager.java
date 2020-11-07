@@ -1,4 +1,4 @@
-package com.scuti.items;
+package com.scuti.habbohotel.items;
 
 
 import java.util.HashMap;

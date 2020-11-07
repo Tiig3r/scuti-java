@@ -1,7 +1,6 @@
-package com.scuti.items;
+package com.scuti.habbohotel.items;
 
-import com.scuti.rooms.Room;
-import com.scuti.users.User;
+import com.scuti.habbohotel.users.User;
 
 import java.sql.ResultSet;
 

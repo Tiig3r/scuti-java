@@ -3,7 +3,7 @@ package com.scuti.messages.outgoing.navigator;
 import com.scuti.Emulator;
 import com.scuti.messages.outgoing.Outgoing;
 import com.scuti.messages.outgoing.OutgoingMessage;
-import com.scuti.rooms.Room;
+import com.scuti.habbohotel.rooms.Room;
 import org.json.JSONObject;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.scuti.commands;
+package com.scuti.habbohotel.commands;
 
 public abstract class Command {
 

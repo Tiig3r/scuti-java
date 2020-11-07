@@ -1,4 +1,4 @@
-package com.scuti.catalog;
+package com.scuti.habbohotel.catalog;
 
 import java.sql.ResultSet;
 

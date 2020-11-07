@@ -3,7 +3,7 @@ package com.scuti.messages.incoming.navigator;
 import com.scuti.Emulator;
 import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
-import com.scuti.rooms.Room;
+import com.scuti.habbohotel.rooms.Room;
 
 import java.sql.*;
 

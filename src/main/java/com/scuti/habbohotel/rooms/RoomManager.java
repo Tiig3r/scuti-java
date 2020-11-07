@@ -1,11 +1,10 @@
-package com.scuti.rooms;
+package com.scuti.habbohotel.rooms;
 
 import com.scuti.Emulator;
 import com.scuti.database.Database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 

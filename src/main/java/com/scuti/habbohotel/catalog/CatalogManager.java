@@ -1,4 +1,4 @@
-package com.scuti.catalog;
+package com.scuti.habbohotel.catalog;
 
 import com.scuti.Emulator;
 import com.scuti.database.Database;

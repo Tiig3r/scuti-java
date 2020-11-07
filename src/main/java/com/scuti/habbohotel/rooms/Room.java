@@ -1,6 +1,6 @@
-package com.scuti.rooms;
+package com.scuti.habbohotel.rooms;
 
-import com.scuti.users.User;
+import com.scuti.habbohotel.users.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

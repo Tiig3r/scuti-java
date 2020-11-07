@@ -1,17 +1,14 @@
-package com.scuti.users;
+package com.scuti.habbohotel.users;
 
 import com.scuti.Emulator;
-import com.scuti.catalog.CatalogItem;
-import com.scuti.gameclients.GameClient;
-import com.scuti.items.Item;
-import com.scuti.items.ItemManager;
-import com.scuti.rooms.Room;
-import com.scuti.rooms.RoomTile;
+import com.scuti.habbohotel.catalog.CatalogItem;
+import com.scuti.habbohotel.items.Item;
+import com.scuti.habbohotel.rooms.Room;
+import com.scuti.habbohotel.rooms.RoomTile;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {

@@ -1,7 +1,6 @@
-package com.scuti.users;
+package com.scuti.habbohotel.users;
 
 import com.scuti.Emulator;
-import com.scuti.database.Database;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.sql.*;
