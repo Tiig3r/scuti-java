@@ -31,14 +31,27 @@ public class ItemManager {
                 }
             }
         } catch (Exception e) {
-            System.out.println(Emulator.ERROR + "Unable to load item manager!");
+            System.out.println(Emulator.ERROR + "Unable to load items!");
             System.exit(0);
         }
-        System.out.println(Emulator.SUCCESS + "Item manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+        System.out.println(Emulator.SUCCESS + "Items -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 
     public void loadItemsBase() {
-
+        long millis = System.currentTimeMillis();
+        try(Connection connection = Database.getDB().getConnection()) {
+            try(Statement statement = connection.createStatement()) {
+                try(ResultSet req = statement.executeQuery("SELECT * FROM items_base")) {
+                    while(req.next()) {
+                        this.itemsBase.put(req.getInt("id"), new Furniture(req));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(Emulator.ERROR + "Unable to load furniture!");
+            System.exit(0);
+        }
+        System.out.println(Emulator.SUCCESS + "Furniture -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 
     public HashMap<Integer, Furniture> getItemsBase() {
@@ -47,5 +60,9 @@ public class ItemManager {
 
     public HashMap<Integer, Item> getItems() {
         return this.items;
+    }
+
+    public Furniture getItemBase(int id) {
+        return this.itemsBase.get(id);
     }
 }
