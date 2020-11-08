@@ -34,11 +34,19 @@ public class LoadRoomMessage extends OutgoingMessage {
         JSONObject roomItems = new JSONObject();
         for(Item item: room.getItems().values()) {
             JSONObject itemData = new JSONObject();
+            JSONObject position = new JSONObject();
 
             // Get item data (position, rotation, and what you want :p )
-            itemData.put("x", item.getX());
-            itemData.put("y", item.getX());
-            itemData.put("z", item.getX());
+            itemData.put("baseId", item.getItemBaseId());
+
+            // Coordinates
+            position.put("x", item.getX());
+            position.put("y", item.getX());
+            position.put("z", item.getX());
+            itemData.put("position", position);
+
+            itemData.put("direction", item.getRotation());
+            //TODO: item state
 
             roomItems.put(Integer.toString(item.getId()), itemData);
         }
