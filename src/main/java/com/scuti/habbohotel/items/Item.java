@@ -33,6 +33,12 @@ public class Item {
         this.extraData = set.getString("extra_data");
     }
 
+    public Item(int id, int ownerId, int furnitureId) {
+        this.id = id;
+        this.userId = ownerId;
+        this.itemBaseId = furnitureId;
+    }
+
     public int getId() {
         return this.id;
     }
