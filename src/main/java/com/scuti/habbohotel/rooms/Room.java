@@ -36,6 +36,7 @@ public class Room {
         this.wallHeight = req.getInt("wall_height");
         this.thicknessFloor = req.getInt("thickness_floor");
         this.heightmap = req.getString("heightmap");
+        this.items = new HashMap<Integer, Item>();
         System.out.println("Room '" + this.name + "' loaded!");
     }
 
@@ -75,7 +76,7 @@ public class Room {
 
     public void initItems() {
         for(Item item: Emulator.scuti().getItemManager().getItems().values()) {
-            if(item.getRoom() == this.id) {
+            if(item.getRoom() == this.getId()) {
                 this.items.put(item.getId(), item);
             }
         }
