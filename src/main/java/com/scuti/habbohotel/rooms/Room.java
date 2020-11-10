@@ -23,8 +23,8 @@ public class Room {
     private final int wallHeight;
     private final int thicknessFloor;
     private final String heightmap;
-    private HashMap<Integer, User> users;
-    private HashMap<Integer, Item> items;
+    private final HashMap<Integer, User> users;
+    private final HashMap<Integer, Item> items;
     //private final TIntObjectMap<Item> roomItems;
 
     public Room(ResultSet req) throws SQLException {
@@ -36,7 +36,9 @@ public class Room {
         this.wallHeight = req.getInt("wall_height");
         this.thicknessFloor = req.getInt("thickness_floor");
         this.heightmap = req.getString("heightmap");
+
         this.items = new HashMap<Integer, Item>();
+        this.users = new HashMap<Integer, User>();
         System.out.println("Room '" + this.name + "' loaded!");
     }
 
@@ -74,7 +76,7 @@ public class Room {
         return this.heightmap;
     }
 
-    public void initItems() {
+    public void loadItems() {
         for(Item item: Emulator.scuti().getItemManager().getItems().values()) {
             if(item.getRoom() == this.getId()) {
                 this.items.put(item.getId(), item);

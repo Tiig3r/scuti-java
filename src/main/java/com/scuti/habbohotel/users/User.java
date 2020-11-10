@@ -33,6 +33,7 @@ public class User {
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
         this.inventory = new HashMap<Integer, Item>();
+        this.room = null;
         this.setInventory();
     }
 
