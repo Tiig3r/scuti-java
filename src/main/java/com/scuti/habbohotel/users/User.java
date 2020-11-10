@@ -109,6 +109,10 @@ public class User {
         room.getUsers().put(this.getId(), this);
     }
 
+    public boolean isOwner(Room room) {
+        return this.getCurrentRoom() == room && this.getId() == room.getOwnerId();
+    }
+
     public int getId() {
         return this.id;
     }

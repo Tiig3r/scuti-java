@@ -54,4 +54,14 @@ public class UserManager {
         }
         return null;
     }
+
+    public User getUser(Session session) {
+        for(User user: onlineUsers.values()) {
+            if(user.getClient() == session) {
+                return user;
+            }
+        }
+
+        return null;
+    }
 }

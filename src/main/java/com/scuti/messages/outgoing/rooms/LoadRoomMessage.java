@@ -2,6 +2,7 @@ package com.scuti.messages.outgoing.rooms;
 
 import com.scuti.Emulator;
 import com.scuti.habbohotel.items.Item;
+import com.scuti.habbohotel.users.User;
 import com.scuti.messages.incoming.Incoming;
 import com.scuti.messages.outgoing.Outgoing;
 import com.scuti.messages.outgoing.OutgoingMessage;
@@ -59,6 +60,9 @@ public class LoadRoomMessage extends OutgoingMessage {
         data.put("furnitures", furniArray);
 
         roomsPacket.put("data", data);
+
+        Emulator.scuti().getUserManager().getUser(this.client).goToRoom(room);
+        //Emulator.scuti().gameClientManager().getClients().get(this.client).goToRoom(room);
         this.client.getRemote().sendString(roomsPacket.toString());
     }
 }
