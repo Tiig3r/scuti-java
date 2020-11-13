@@ -22,7 +22,7 @@ public class Room {
     private final String ownerName;
     private final int wallHeight;
     private final int thicknessFloor;
-    private final String heightmap;
+    private final int heightmap;
     private final HashMap<Integer, User> users;
     private final HashMap<Integer, Item> items;
     //private final TIntObjectMap<Item> roomItems;
@@ -35,7 +35,7 @@ public class Room {
         this.ownerName = req.getString("owner_name");
         this.wallHeight = req.getInt("wall_height");
         this.thicknessFloor = req.getInt("thickness_floor");
-        this.heightmap = req.getString("heightmap");
+        this.heightmap = req.getInt("heightmap");
 
         this.items = new HashMap<Integer, Item>();
         this.users = new HashMap<Integer, User>();
@@ -72,7 +72,7 @@ public class Room {
         return this.thicknessFloor;
     }
 
-    public String getHeightmap() {
+    public int getHeightmapId() {
         return this.heightmap;
     }
 

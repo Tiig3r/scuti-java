@@ -12,14 +12,12 @@ import java.util.HashMap;
 public class NavigatorRoomMessage extends OutgoingMessage {
     @Override
     public void compose() throws IOException {
-
-        HashMap<Integer, Room> rooms = Emulator.scuti().getRoomManager().getRoomsLoaded();
         JSONObject roomsPacket = new JSONObject();
         JSONObject data = new JSONObject();
 
         roomsPacket.put("packetId", Outgoing.RoomNavigatorListMessage);
 
-        for(Room room : rooms.values()) {
+        for(Room room : Emulator.scuti().getRoomManager().getRoomsLoaded().values()) {
             JSONObject roomData = new JSONObject();
 
             // owner id -> owner name
@@ -30,7 +28,7 @@ public class NavigatorRoomMessage extends OutgoingMessage {
             roomData.put("description", room.getDescription());
             roomData.put("wallHeight", room.getWallHeight());
             roomData.put("floorThickness", room.getFloorThickness());
-            roomData.put("heightmap", room.getHeightmap());
+            roomData.put("heightmap", Emulator.scuti().getRoomManager().getModelsLoaded().get(room.getHeightmapId()).getHeightmap());
 
             data.put(Integer.toString(room.getId()), roomData);
         }
