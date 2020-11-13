@@ -19,7 +19,7 @@ public class LoadRoomMessage extends OutgoingMessage {
 
         int roomId = (Integer) this.data.get("roomId");
 
-        Room room = Emulator.scuti().getRoomManager().getRoom(roomId);
+        Room room = Emulator.scuti().getRoomManager().getRoomsLoaded().get(roomId);
         room.loadItems();
 
         JSONObject roomsPacket = new JSONObject();

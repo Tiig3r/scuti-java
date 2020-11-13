@@ -10,9 +10,11 @@ import java.util.HashMap;
 
 public class RoomManager {
     private final HashMap<Integer, Room> rooms;
+    private final HashMap<Integer, RoomModel> models;
 
     public RoomManager() {
         this.rooms = new HashMap<Integer, Room>();
+        this.models = new HashMap<Integer, RoomModel>();
     }
 
     public void loadRooms() {
@@ -32,9 +34,28 @@ public class RoomManager {
         System.out.println(Emulator.SUCCESS + "Room manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 
+    public void loadModels() {
+        long millis = System.currentTimeMillis();
+        try(Connection connection = Database.getDB().getConnection()) {
+            try(Statement statement = connection.createStatement()) {
+                try(ResultSet req = statement.executeQuery("SELECT * FROM room_models")) {
+                    while(req.next()) {
+                        this.models.put(req.getInt("id"), new RoomModel(req));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(Emulator.ERROR + "Unable to load room models!");
+            System.exit(0);
+        }
+        System.out.println(Emulator.SUCCESS + "Room models -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+    }
+
     public HashMap<Integer, Room> getRoomsLoaded() {
         return this.rooms;
     }
 
-    public Room getRoom(Integer id) { return this.rooms.get(id); }
+    public HashMap<Integer, RoomModel> getModelsLoaded() {
+        return this.models;
+    }
 }

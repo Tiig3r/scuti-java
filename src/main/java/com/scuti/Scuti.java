@@ -31,6 +31,7 @@ public class Scuti {
 
     public void preload() throws SQLException {
         this.roomManager.loadRooms();
+        this.roomManager.loadModels();
         // Load furniture (items base)
         this.getItemManager().loadItemsBase();
         // Load items in rooms
