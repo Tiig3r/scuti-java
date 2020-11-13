@@ -4,7 +4,12 @@ import com.scuti.Emulator;
 import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
 import com.scuti.habbohotel.rooms.Room;
+import com.scuti.messages.incoming.rooms.LoadRoomEvent;
+import com.scuti.messages.outgoing.OutgoingMessage;
+import com.scuti.messages.outgoing.rooms.LoadRoomMessage;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class CreateRoomEvent extends IncomingEvent {
@@ -22,6 +27,7 @@ public class CreateRoomEvent extends IncomingEvent {
                     statement.executeUpdate();
                     ResultSet result = statement.getGeneratedKeys();
 
+                    // Insert new room in Hashmap of rooms loaded
                     if(result.next()) {
                         int insertId = result.getInt(1);
                         try (PreparedStatement req = connection.prepareStatement("SELECT * FROM rooms WHERE id = ?")) {
@@ -32,8 +38,18 @@ public class CreateRoomEvent extends IncomingEvent {
                                 }
                             }
                         }
+
+                        // Go in the room
+                        JSONObject output = new JSONObject();
+                        output.put("roomId", insertId);
+                        OutgoingMessage loadRoomMessage = new LoadRoomMessage();
+                        loadRoomMessage.client = this.session;
+                        loadRoomMessage.data = output;
+                        loadRoomMessage.compose();
                     }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
