@@ -17,7 +17,7 @@ public class LoadRoomMessage extends OutgoingMessage {
     @Override
     public void compose() throws IOException {
 
-        int roomId = (Integer) this.data.get("roomId");
+        int roomId = this.data.getInt("roomId");
 
         Room room = Emulator.scuti().getRoomManager().getRoomsLoaded().get(roomId);
         room.loadItems();
@@ -61,8 +61,7 @@ public class LoadRoomMessage extends OutgoingMessage {
 
         roomsPacket.put("data", data);
 
-        Emulator.scuti().getUserManager().getUser(this.client).goToRoom(room);
-        //Emulator.scuti().gameClientManager().getClients().get(this.client).goToRoom(room);
+        Emulator.scuti().gameClientManager().getClients().get(this.client).goToRoom(room);
         this.client.getRemote().sendString(roomsPacket.toString());
     }
 }

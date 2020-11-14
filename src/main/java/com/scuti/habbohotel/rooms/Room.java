@@ -20,6 +20,7 @@ public class Room {
     private final String description;
     private final int ownerId;
     private final String ownerName;
+    private final int maxUsers;
     private final int wallHeight;
     private final int thicknessFloor;
     private final int heightmap;
@@ -36,7 +37,7 @@ public class Room {
         this.wallHeight = req.getInt("wall_height");
         this.thicknessFloor = req.getInt("thickness_floor");
         this.heightmap = req.getInt("heightmap");
-
+        this.maxUsers = req.getInt("max_users");
         this.items = new HashMap<Integer, Item>();
         this.users = new HashMap<Integer, User>();
         System.out.println("Room '" + this.name + "' loaded!");
@@ -64,6 +65,10 @@ public class Room {
 
     public String getOwnerName() {
         return this.ownerName;
+    }
+
+    public int getMaxUsers() {
+        return this.maxUsers;
     }
 
     public int getWallHeight() { return this.wallHeight; }
