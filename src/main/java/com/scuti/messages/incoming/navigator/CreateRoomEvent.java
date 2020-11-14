@@ -15,17 +15,20 @@ import java.sql.*;
 public class CreateRoomEvent extends IncomingEvent {
     @Override
     public void handle() throws SQLException {
-        //TODO: refactoring -> reorganisation
+        String name = this.data.getJSONObject("data").getString("roomName");
+        int modelId = this.data.getJSONObject("data").getInt("modelId");
+        String description = this.data.getJSONObject("data").getString("description");
+        //TODO: category system
+        int categoryId = this.data.getJSONObject("data").getInt("categoryId");
+        int maxUsers = this.data.getJSONObject("data").getInt("maxUsers");
+
         try(Connection connection = Database.getDB().getConnection()) {
             try(PreparedStatement statement = connection.prepareStatement("INSERT INTO rooms (owner_id, name, heightmap, max_users, description) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-                statement.setInt(1, Emulator.scuti().gameClientManager().getClients().get(this.session).getId());
                 statement.setString(2, this.data.getJSONObject("data").getString("roomName"));
-
-                int modelId = this.data.getJSONObject("data").getInt("modelId");
-                int maxUsers = this.data.getJSONObject("data").getInt("maxUsers");
-                String description = this.data.getJSONObject("data").getString("description");
                 //TODO: check max users data
                 if(Emulator.scuti().getRoomManager().getModelsLoaded().containsKey(modelId)) {
+                    statement.setInt(1, Emulator.scuti().gameClientManager().getClients().get(this.session).getId());
+                    statement.setString(2, name);
                     statement.setInt(3, modelId);
                     statement.setInt(4, maxUsers);
                     statement.setString(5, description);
