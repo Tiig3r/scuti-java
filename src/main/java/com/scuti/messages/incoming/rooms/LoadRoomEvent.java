@@ -12,7 +12,7 @@ public class LoadRoomEvent extends IncomingEvent {
     @Override
     public void handle() throws IllegalAccessException, InstantiationException, IOException {
 
-        Integer roomId = this.data.getJSONObject("data").getInt("roomId");
+        int roomId = this.data.getJSONObject("data").getInt("roomId");
 
         JSONObject output = new JSONObject();
         output.put("roomId", roomId);

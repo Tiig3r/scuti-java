@@ -106,7 +106,7 @@ public class User {
 
     public void goToRoom(Room room) {
         this.room = room;
-        room.getUsers().put(this.getId(), this);
+        room.getUsers().put(this.id, this);
     }
 
     public boolean isOwner(Room room) {
