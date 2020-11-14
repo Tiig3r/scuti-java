@@ -29,6 +29,8 @@ public class LoadRoomMessage extends OutgoingMessage {
         JSONObject data = new JSONObject();
 
         data.put("roomId", room.getId());
+        data.put("name", room.getName());
+        data.put("ownerName", room.getOwnerName());
         data.put("heightmap", Emulator.scuti().getRoomManager().getModelsLoaded().get(room.getHeightmapId()).getHeightmap().replace('\r', 'x'));
         data.put("floorThickness", room.getFloorThickness());
         data.put("wallHeight", room.getWallHeight());
@@ -61,8 +63,8 @@ public class LoadRoomMessage extends OutgoingMessage {
 
         roomsPacket.put("data", data);
 
-        Emulator.scuti().getUserManager().getUser(this.client).goToRoom(room);
-        //Emulator.scuti().gameClientManager().getClients().get(this.client).goToRoom(room);
+        //Emulator.scuti().getUserManager().getUser(this.client).goToRoom(room);
+        Emulator.scuti().gameClientManager().getClients().get(this.client).goToRoom(room);
         this.client.getRemote().sendString(roomsPacket.toString());
     }
 }
