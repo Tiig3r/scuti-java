@@ -105,8 +105,15 @@ public class User {
     }
 
     public void goToRoom(Room room) {
+        if(this.room != null) {
+            leaveRoom();
+        }
         this.room = room;
         room.getUsers().put(this.id, this);
+    }
+
+    public void leaveRoom() {
+        this.room.getUsers().remove(this.id);
     }
 
     public boolean isOwner(Room room) {

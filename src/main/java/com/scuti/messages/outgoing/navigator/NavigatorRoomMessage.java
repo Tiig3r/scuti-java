@@ -26,9 +26,11 @@ public class NavigatorRoomMessage extends OutgoingMessage {
             roomData.put("ownerId", room.getOwnerId());
             roomData.put("ownerName", room.getOwnerName());
             roomData.put("description", room.getDescription());
-            roomData.put("wallHeight", room.getWallHeight());
-            roomData.put("floorThickness", room.getFloorThickness());
-            roomData.put("heightmap", Emulator.scuti().getRoomManager().getModelsLoaded().get(room.getHeightmapId()).getHeightmap());
+            //roomData.put("wallHeight", room.getWallHeight());
+            //roomData.put("floorThickness", room.getFloorThickness());
+            //roomData.put("heightmap", Emulator.scuti().getRoomManager().getModelsLoaded().get(room.getHeightmapId()).getHeightmap());
+            roomData.put("maxUsers", room.getMaxUsers());
+            roomData.put("users", room.getUsers().size());
 
             data.put(Integer.toString(room.getId()), roomData);
         }
