@@ -28,7 +28,7 @@ public class RoomManager {
                 }
             }
         } catch (Exception e) {
-            System.out.println(Emulator.ERROR + "Unable to load room manager!");
+            System.out.println(Emulator.ERROR + "Unable to load room manager! Error: " + e);
             System.exit(0);
         }
         System.out.println(Emulator.SUCCESS + "Room manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");

@@ -37,7 +37,7 @@ public class Room {
         this.wallHeight = req.getInt("wall_height");
         this.thicknessFloor = req.getInt("thickness_floor");
         this.heightmap = req.getInt("heightmap");
-        this.maxUsers = req.getInt("max_users");
+        this.maxUsers = req.getInt("users_max");
         this.items = new HashMap<Integer, Item>();
         this.users = new HashMap<Integer, User>();
         System.out.println("Room '" + this.name + "' loaded!");

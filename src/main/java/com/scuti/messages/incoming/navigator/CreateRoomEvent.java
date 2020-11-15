@@ -5,6 +5,7 @@ import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
 import com.scuti.habbohotel.rooms.Room;
 import com.scuti.messages.incoming.rooms.LoadRoomEvent;
+import com.scuti.messages.outgoing.Outgoing;
 import com.scuti.messages.outgoing.OutgoingMessage;
 import com.scuti.messages.outgoing.rooms.LoadRoomMessage;
 import org.json.JSONObject;
@@ -14,7 +15,7 @@ import java.sql.*;
 
 public class CreateRoomEvent extends IncomingEvent {
     @Override
-    public void handle() throws SQLException {
+    public void handle() throws SQLException, IllegalAccessException, InstantiationException, IOException {
         String name = this.data.getJSONObject("data").getString("roomName");
         int modelId = this.data.getJSONObject("data").getInt("modelId");
         String description = this.data.getJSONObject("data").getString("description");
@@ -22,16 +23,19 @@ public class CreateRoomEvent extends IncomingEvent {
         int categoryId = this.data.getJSONObject("data").getInt("categoryId");
         int maxUsers = this.data.getJSONObject("data").getInt("maxUsers");
 
+
         try(Connection connection = Database.getDB().getConnection()) {
-            try(PreparedStatement statement = connection.prepareStatement("INSERT INTO rooms (owner_id, name, heightmap, max_users, description) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(2, this.data.getJSONObject("data").getString("roomName"));
+
+            try(PreparedStatement statement = connection.prepareStatement("INSERT INTO rooms (owner_id, owner_name, name, heightmap, users_max, description) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
                 //TODO: check max users data
                 if(Emulator.scuti().getRoomManager().getModelsLoaded().containsKey(modelId)) {
+
                     statement.setInt(1, Emulator.scuti().gameClientManager().getClients().get(this.session).getId());
-                    statement.setString(2, name);
-                    statement.setInt(3, modelId);
-                    statement.setInt(4, maxUsers);
-                    statement.setString(5, description);
+                    statement.setString(2, "Tig3r");
+                    statement.setString(3, name);
+                    statement.setInt(4, modelId);
+                    statement.setInt(5, maxUsers);
+                    statement.setString(6, description);
 
                     statement.executeUpdate();
                     ResultSet result = statement.getGeneratedKeys();
@@ -51,10 +55,13 @@ public class CreateRoomEvent extends IncomingEvent {
                         // Go in the room
                         JSONObject output = new JSONObject();
                         output.put("roomId", insertId);
-                        OutgoingMessage loadRoomMessage = new LoadRoomMessage();
-                        loadRoomMessage.client = this.session;
-                        loadRoomMessage.data = output;
-                        loadRoomMessage.compose();
+
+                        Class<? extends OutgoingMessage> classMessage = Emulator.scuti().getOutgoingMessageManager().getMessages().get(Outgoing.LoadRoomMessage);
+                        OutgoingMessage message = classMessage.newInstance();
+                        message.client = this.session;
+                        message.data = output;
+
+                        message.compose();
                     }
                 }
             } catch (IOException e) {
