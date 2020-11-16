@@ -1,5 +1,6 @@
 package com.scuti.messages.outgoing;
 
+import com.scuti.messages.outgoing.navigator.MyRoomsMessage;
 import com.scuti.messages.outgoing.navigator.NavigatorRoomMessage;
 import com.scuti.messages.outgoing.rooms.LoadRoomMessage;
 import com.scuti.messages.outgoing.user.UserLoginMessage;
@@ -24,6 +25,7 @@ public class OutgoingMessageManager {
         this.messages.put(Outgoing.UserLoginMessage, UserLoginMessage.class);
         this.messages.put(Outgoing.RoomNavigatorListMessage, NavigatorRoomMessage.class);
         this.messages.put(Outgoing.LoadRoomMessage, LoadRoomMessage.class);
+        this.messages.put(Outgoing.MyRoomsMessage, MyRoomsMessage.class);
 
     }
 

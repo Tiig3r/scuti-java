@@ -30,7 +30,10 @@ public class NavigatorRoomMessage extends OutgoingMessage {
             //roomData.put("floorThickness", room.getFloorThickness());
             //roomData.put("heightmap", Emulator.scuti().getRoomManager().getModelsLoaded().get(room.getHeightmapId()).getHeightmap());
             roomData.put("maxUsers", room.getMaxUsers());
+            roomData.put("category", room.getCategory());
+            roomData.put("isOwner", room.getOwnerId() == Emulator.scuti().gameClientManager().getClients().get(this.client).getId() ? true : false);
             roomData.put("users", room.getUsers().size());
+            roomData.put("state", room.getState());
 
             data.put(Integer.toString(room.getId()), roomData);
         }

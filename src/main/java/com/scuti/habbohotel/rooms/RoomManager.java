@@ -2,11 +2,14 @@ package com.scuti.habbohotel.rooms;
 
 import com.scuti.Emulator;
 import com.scuti.database.Database;
+import com.scuti.habbohotel.users.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RoomManager {
     private final HashMap<Integer, Room> rooms;
@@ -58,4 +61,5 @@ public class RoomManager {
     public HashMap<Integer, RoomModel> getModelsLoaded() {
         return this.models;
     }
+
 }

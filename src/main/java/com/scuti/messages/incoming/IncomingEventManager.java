@@ -2,6 +2,7 @@ package com.scuti.messages.incoming;
 
 import com.scuti.messages.incoming.navigator.CreateRoomEvent;
 import com.scuti.messages.incoming.navigator.OpenNavigatorEvent;
+import com.scuti.messages.incoming.navigator.RequestMyRoomsEvent;
 import com.scuti.messages.incoming.rooms.LoadRoomEvent;
 import com.scuti.messages.incoming.user.UserLoginEvent;
 
@@ -24,5 +25,6 @@ public class IncomingEventManager {
         events.put(Incoming.OpenNavigatorEvent, OpenNavigatorEvent.class);
         events.put(Incoming.CreateRoomEvent, CreateRoomEvent.class);
         events.put(Incoming.LoadRoomEvent, LoadRoomEvent.class);
+        events.put(Incoming.RequestMyRoomsEvent, RequestMyRoomsEvent.class);
     }
 }

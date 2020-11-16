@@ -31,7 +31,7 @@ public class CreateRoomEvent extends IncomingEvent {
                 if(Emulator.scuti().getRoomManager().getModelsLoaded().containsKey(modelId)) {
 
                     statement.setInt(1, Emulator.scuti().gameClientManager().getClients().get(this.session).getId());
-                    statement.setString(2, "Tig3r");
+                    statement.setString(2, Emulator.scuti().gameClientManager().getClients().get(this.session).getUsername());
                     statement.setString(3, name);
                     statement.setInt(4, modelId);
                     statement.setInt(5, maxUsers);

@@ -21,9 +21,11 @@ public class Room {
     private final int ownerId;
     private final String ownerName;
     private final int maxUsers;
+    private final int category;
     private final int wallHeight;
     private final int thicknessFloor;
     private final int heightmap;
+    private final String state;
     private final HashMap<Integer, User> users;
     private final HashMap<Integer, Item> items;
     //private final TIntObjectMap<Item> roomItems;
@@ -38,6 +40,8 @@ public class Room {
         this.thicknessFloor = req.getInt("thickness_floor");
         this.heightmap = req.getInt("heightmap");
         this.maxUsers = req.getInt("users_max");
+        this.category = req.getInt("category");
+        this.state = req.getString("state");
         this.items = new HashMap<Integer, Item>();
         this.users = new HashMap<Integer, User>();
         System.out.println("Room '" + this.name + "' loaded!");
@@ -71,6 +75,10 @@ public class Room {
         return this.maxUsers;
     }
 
+    public int getCategory() {
+        return this.category;
+    }
+
     public int getWallHeight() { return this.wallHeight; }
 
     public int getFloorThickness() {
@@ -79,6 +87,10 @@ public class Room {
 
     public int getHeightmapId() {
         return this.heightmap;
+    }
+
+    public String getState() {
+        return this.state;
     }
 
     public void loadItems() {
